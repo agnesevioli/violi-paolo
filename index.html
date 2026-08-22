@@ -3,62 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violi Paolo - Fiori</title>
+    <meta name="description" content="Violi Paolo piante e fiori, il fioraio di Sassuolo da più di 30 anni.">
+    <title>Violi Paolo piante e fiori</title>
     <style>
-        body { margin:0; font-family:Arial,sans-serif; background:#fff8fb; color:#333; }
-        header { background:#8f3d68; color:white; text-align:center; padding:50px 20px; }
-        header h1 { font-size:42px; margin:0 0 10px; }
-        header p { font-size:20px; margin:0; }
-        section { max-width:900px; margin:auto; padding:40px 20px; text-align:center; }
-        h2 { color:#8f3d68; font-size:30px; }
-        .gallery { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
-        .gallery img { width:100%; max-width:400px; border-radius:15px; box-shadow:0 3px 15px rgba(0,0,0,.15); }
-        .contatti { background:white; border-radius:15px; padding:30px; box-shadow:0 3px 15px rgba(0,0,0,.1); }
-        .button { display:inline-block; margin-top:10px; padding:12px 20px; background:#8f3d68; color:white; text-decoration:none; border-radius:25px; }
-        footer { background:#8f3d68; color:white; text-align:center; padding:20px; }
+        :root {
+            --verde: #315c3d;
+            --verde-chiaro: #6f8f70;
+            --verde-pallido: #edf3eb;
+            --crema: #fbfaf5;
+            --oro: #b69b5d;
+            --testo: #26352a;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            background: var(--crema);
+            color: var(--testo);
+            line-height: 1.7;
+        }
+
+        .pagina {
+            position: relative;
+            max-width: 1180px;
+            margin: 24px auto;
+            background: #fffef9;
+            border: 1px solid rgba(49, 92, 61, .35);
+            box-shadow: 0 10px 35px rgba(38, 53, 42, .10);
+            overflow: hidden;
+        }
+
+        .pagina::before,
+        .pagina::after {
+            content: '🌿';
+            position: absolute;
+            color: var(--verde-chiaro);
+            font-size: 90px;
+            opacity: .20;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .pagina::before { top: 8px; left: 8px; transform: rotate(-25deg); }
+        .pagina::after { top: 8px; right: 8px; transform: scaleX(-1) rotate(-25deg); }
+
+        header {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 82px 28px 70px;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(111,143,112,.10), transparent 22%),
+                radial-gradient(circle at 90% 20%, rgba(111,143,112,.10), transparent 22%),
+                var(--verde-pallido);
+            border-bottom: 1px solid rgba(49, 92, 61, .25);
+        }
+
+        header::after {
+            content: '✦  ✿  ✦';
+            display: block;
+            margin-top: 18px;
+            color: var(--oro);
+            letter-spacing: 8px;
+            font-size: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #23442d;
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -.5px;
+        }
+
+        .intro {
+            max-width: 760px;
+            margin: 28px auto 0;
+            font-size: clamp(20px, 2.3vw, 27px);
+            color: #344a39;
+        }
+
+        .intro strong { font-weight: 700; }
+
+        section {
+            position: relative;
+            z-index: 1;
+            max-width: 1080px;
+            margin: auto;
+            padding: 58px 28px;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            text-align: center;
+            color: var(--verde);
+            font-size: clamp(30px, 4vw, 42px);
+            line-height: 1.2;
+        }
+
+        .ornamento {
+            width: 130px;
+            height: 1px;
+            background: var(--oro);
+            margin: 0 auto 34px;
+            position: relative;
+        }
+        .ornamento::after {
+            content: '❧';
+            position: absolute;
+            left: 50%;
+            top: -16px;
+            transform: translateX(-50%);
+            background: #fffef9;
+            padding: 0 10px;
+            color: var(--verde-chiaro);
+            font-size: 24px;
+        }
+
+        .galleria {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .foto {
+            margin: 0;
+            background: white;
+            padding: 8px;
+            border: 1px solid rgba(49, 92, 61, .20);
+            border-radius: 16px;
+            box-shadow: 0 7px 22px rgba(38, 53, 42, .10);
+        }
+
+        .foto img {
+            display: block;
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 11px;
+        }
+
+        .contatti {
+            background: var(--verde-pallido);
+            border: 1px solid rgba(49, 92, 61, .25);
+            border-radius: 18px;
+            padding: 34px;
+            text-align: center;
+            box-shadow: 0 7px 22px rgba(38, 53, 42, .06);
+        }
+
+        .contatti p { margin: 8px 0 20px; font-size: 19px; }
+        .contatti strong { color: var(--verde); }
+
+        .button {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 12px 22px;
+            background: var(--verde);
+            color: white;
+            text-decoration: none;
+            border-radius: 999px;
+            transition: transform .2s ease, background .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: #24482f; }
+
+        .orari {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-top: 10px;
+        }
+        .orario {
+            padding: 20px 30px;
+            text-align: center;
+        }
+        .orario + .orario { border-left: 1px solid rgba(49, 92, 61, .25); }
+        .orario h3 {
+            margin: 0 0 14px;
+            color: var(--verde);
+            font-size: 28px;
+        }
+        .orario p { margin: 5px 0; font-size: 19px; }
+        .chiuso { margin-top: 14px !important; font-weight: 700; }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 25px 20px;
+            color: #edf3eb;
+            background: var(--verde);
+            font-size: 15px;
+        }
+
+        @media (max-width: 800px) {
+            .pagina { margin: 0; border-left: 0; border-right: 0; }
+            header { padding: 60px 20px 52px; }
+            section { padding: 45px 18px; }
+            .galleria { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .foto img { height: 300px; }
+        }
+
+        @media (max-width: 520px) {
+            .galleria, .orari { grid-template-columns: 1fr; }
+            .foto img { height: 390px; }
+            .orario + .orario { border-left: 0; border-top: 1px solid rgba(49, 92, 61, .25); margin-top: 12px; padding-top: 30px; }
+            .contatti { padding: 25px 18px; }
+        }
     </style>
 </head>
 <body>
-<header>
-    <h1>Violi Paolo</h1>
-    <p>Fiori e composizioni floreali</p>
-</header>
+<div class="pagina">
+    <header>
+        <h1>Violi Paolo piante e fiori</h1>
+        <p class="intro">
+            <strong>Il fioraio di Sassuolo da più di 30 anni.</strong><br>
+            Da noi puoi trovare fiori freschi e comporre boquet, mazzi artistici.
+        </p>
+    </header>
 
-<section>
-    <h2>Benvenuti da Violi Paolo</h2>
-    <p>
-        Benvenuti da Violi Paolo, il fioraio di Sassuolo da più di 70 anni.
-        Da noi puoi trovare fiori freschi ogni giorno.
-        Puoi acquistare bouquet, mazzi artistici e articoli floreali finti.
-    </p>
-</section>
+    <section id="creazioni">
+        <h2>Alcune nostre creazioni</h2>
+        <div class="ornamento"></div>
+        <div class="galleria">
+            <figure class="foto"><img src="creazione1.jpeg" alt="Bouquet con rose gialle e margherite"></figure>
+            <figure class="foto"><img src="creazione2.jpeg" alt="Bouquet con anthurium, rose e gigli"></figure>
+            <figure class="foto"><img src="creazione3.jpeg" alt="Composizione floreale con girasoli, gigli e fiori rossi"></figure>
+            <figure class="foto"><img src="creazione4.jpeg" alt="Composizione colorata di tulipani"></figure>
+            <figure class="foto"><img src="fiori1.jpeg" alt="Composizione floreale con rose, gigli e orchidee"></figure>
+            <figure class="foto"><img src="fiori2.jpeg" alt="Composizione floreale colorata con rose e gigli"></figure>
+        </div>
+    </section>
 
-<section>
-    <div class="gallery">
-        <img src="fiori1.jpeg" alt="Composizione floreale">
-        <img src="fiori2.jpeg" alt="Composizione floreale">
-    </div>
-</section>
+    <section id="contatti">
+        <h2>Posizione e contatti</h2>
+        <div class="ornamento"></div>
+        <div class="contatti">
+            <p><strong>📍 Indirizzo:</strong><br>Santa Maria da Cascia 23</p>
+            <p><strong>📞 Telefono:</strong><br>+39 349 788 8801</p>
+            <a class="button" href="tel:+393497888801">Chiama il negozio</a>
+        </div>
+    </section>
 
-<section>
-    <h2>Contatti</h2>
-    <div class="contatti">
-        <p><strong>📍 Indirizzo:</strong><br>Via Santa Rita da Cascia 23</p>
-        <p><strong>📞 Telefono:</strong><br>+39 349 788 8801</p>
-        <p><strong>🕐 Orari:</strong><br>8:00–12:00 e 14:00–18:00</p>
-        <a class="button" href="tel:+393497888801">Chiama il negozio</a>
-        <a class="button" href="https://wa.me/393497888801" target="_blank">Scrivici su WhatsApp</a>
-    </div>
-</section>
+    <section id="orari">
+        <h2>Orari</h2>
+        <div class="ornamento"></div>
+        <div class="orari">
+            <div class="orario">
+                <h3>Orario Invernale</h3>
+                <p>Tutti i giorni</p>
+                <p>9:00-12:00</p>
+                <p>14:00-17:00</p>
+                <p class="chiuso">Chiuso il lunedì</p>
+            </div>
+            <div class="orario">
+                <h3>Orario Estivo</h3>
+                <p>Tutti i giorni</p>
+                <p>8:30-12:30</p>
+                <p>15:00-18:30</p>
+                <p class="chiuso">Chiuso il lunedì</p>
+            </div>
+        </div>
+    </section>
 
-<section>
-    <h2>Dove siamo</h2>
-    <p>Via Santa Rita da Cascia 23, Sassuolo</p><p>Di fronte al Cimitero Nuovo Urbano</p>
-    <a class="button" href="https://www.google.com/maps/search/?api=1&query=Via%20Santa%20Rita%20da%20Cascia%2023%2C%20Sassuolo" target="_blank">Apri la mappa</a>
-</section>
-
-<footer>
-    © 2026 Violi Paolo - Fiori
-</footer>
+    <footer>© 2026 Violi Paolo piante e fiori</footer>
+</div>
 </body>
 </html>
